@@ -7,9 +7,22 @@ def create_assignments(employees: List[Tuple[str, str]],
     """
     Create valid Secret Santa assignments following all constraints
     """
+
     max_attempts = 100
     attempt = 0
     
+    """here this max_attempts is beacuse it will try to generate valid assignments
+    until the maximum number of attempts is reached
+    
+    Here why i used this is:
+    1. Prevent Infinite loop.
+    2. To mae it controller on execution time
+
+    by using this way i can ensure that the function behaves predicatably
+    and can handle failures cases.
+    
+    
+    """
     while attempt < max_attempts:
         try:
             assignments = []
@@ -71,7 +84,7 @@ def generate_sample_data():
 
     # Generate current year employee list
     df_employees = pd.DataFrame(employees, columns=['Employee_Name', 'Employee_EmailID'])
-    df_employees.to_csv('current_employees.csv', index=False)
+    df_employees.to_csv('employees.csv', index=False)
 
     # First generate previous year assignments
     previous_assignments = create_assignments(employees)
